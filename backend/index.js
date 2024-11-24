@@ -2,16 +2,18 @@ import express from "express";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
-import cors from "cors"
+import cors from "cors";
 import route from "./routes/userRoute.js";
 
 const app = express();
 app.use(bodyParser.json());
-app.use(cors())
+app.use(cors());
 dotenv.config();
-app.use(cors({
-  origin: 'https://yourdeployedsite.com'
-}))
+app.use(
+  cors({
+    origin: "https://crud-mern-dusky.vercel.app/",
+  })
+);
 
 const Port = process.env.PORT || 3000;
 const MONGO_URI = process.env.MONGO_URI;
@@ -28,6 +30,4 @@ mongoose
     console.log(error);
   });
 
-app.use("/api",route); 
-
-
+app.use("/api", route);
